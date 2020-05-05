@@ -34,7 +34,7 @@
         </p>
         <br>
         <div class="text-center">
-            <a class="btn btn-primary btn-lg"href="/about" role="button">Learn More</a>
+            <a class="btn btn-primary btn-lg"href="{{route('about')}}" role="button">Learn More</a>
         </div>
     </div>
 </div>

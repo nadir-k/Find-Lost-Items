@@ -3,7 +3,7 @@
 @section('contents')
 <h1>{{$requests->item->title}}</h1>
 <hr>
-<a href="/requests" class="btn btn-secondary">Back</a>
+<a href="{{route('requests')}}" class="btn btn-secondary">Back</a>
 <br><br>
 <h5>Requested by {{$requests->user->name}}</h5>
 <br>
@@ -16,8 +16,8 @@
 <hr>
 @if(Auth::user()->role == 1)
     <div>
-        <a href="{{action('RequestController@approveRequest', $requests->id)}}" class="btn btn-primary">Accept</a>
-        <a href="{{action('RequestController@disapproveRequest', $requests->id)}}" class="btn btn-danger">Decline</a>
+    <a href='{{url("email/approved/{$request->id}")}}' class="btn btn-primary">Accept</a>
+        <a href='{{url("email/disapproved/{$request->id}")}}' class="btn btn-danger">Decline</a>
     </div>
 @endif
 @endsection

@@ -30,7 +30,7 @@
                             </td>
                             @endif
                             <td>
-                                <a href="/requests/{{$request->id}}">{{$request->item->title}}</a>
+                                <a href='{{url("showRequest/{$request->id}")}}'>{{$request->item->title}}</a>
                             </td>
                             <td>
                                 <p>{{$request->status}}</p>

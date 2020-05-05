@@ -7,7 +7,7 @@
     <h5>Fill the details below</h5>
 </div>
 
-<form method="POST" action="{{route('posts.update', $posts->id)}}" enctype="multipart/form-data">
+<form method="POST" action="{{url('/update', $posts->id)}}" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="form-group">

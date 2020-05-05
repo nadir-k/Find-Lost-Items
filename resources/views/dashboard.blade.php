@@ -8,7 +8,7 @@
                 <div class="h5 text-white bg-primary card-header">Dashboard</div>
                 <div class="card-body">
                     <div class="panel-body">
-                        <a href="/posts/create" class="btn btn-primary">Create Post</a>
+                        <a href="{{route('create')}}" class="btn btn-primary">Create Post</a>
                         <br><br>
                         <h3>Your Blog Posts</h3>
                         <br>
@@ -21,8 +21,8 @@
                             </tr>
                             @foreach($posts as $post)
                                 <tr>
-                                    <th><h5><a href="/posts/{{$post->id}}">{{$post->title}}</a></h5></th>
-                                    <th><a href="/posts/{{$post->id}}/edit" class="btn btn-info">Edit</a></th>
+                                    <th><h5><a href='{{url("show/{$post->id}")}}'>{{$post->title}}</a></h5></th>
+                                    <th><a href='{{url("edit/{$post->id}")}}' class="btn btn-info">Edit</a></th>
                                     <th>
                                         {!!Form::open(['action' => ['PostController@destroy', $post->id], 'method' => 'POST', 'class' => 'text-right float-right'])!!}
                                             {{Form::hidden('_method', 'DELETE')}}

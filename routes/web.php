@@ -12,36 +12,53 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Route::get('/about', function(){
-    return view('pages.about');
-});*/
-
-Route::get('/', 'PagesController@index');
-
-Route::get('/about', 'PagesController@about');
-
-Route::get('/create', 'PostController@create');
-
-Route::resource('posts', 'PostController');
-
-Route::get('/register', 'PagesController@register');
 
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index');
 
-Route::get('display', 'PostController@display')->name('display_post');
+//Routes for the pages
+Route::get('/', 'PagesController@index')->name('home');
 
-Route::resource('requests', 'RequestController');
+Route::get('/about', 'PagesController@about')->name('about');
 
-// Route::get('/requests', 'RequestController@create');
 
-Route::get('/requests/create/{id}', 'RequestController@create')->name('requests.create');
+//Routes for the dashboard
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+
+//Routes for the posts
+Route::get('/create', 'PostController@create')->name('create');
+
+Route::get('/posts', 'PostController@index')->name('posts');
+
+Route::post('/store', 'PostController@store');
+
+Route::get('/show/{id}', 'PostController@show');
+
+Route::get('/edit/{id}', 'PostController@edit');
+
+Route::put('/update/{id}', 'PostController@update');
+
+Route::delete('/destroy/{id}', 'PostController@destroy');
+
+
+//Routes for the requests
+Route::get('/requests', 'RequestController@index')->name('requests');
+
+Route::get('/makeRequest/{id}', 'RequestController@create');
+
+Route::post('/storeRequest', 'RequestController@store');
+
+Route::get('/showRequest/{id}', 'RequestController@show');
 
 Route::get('/email/approved/{id}', 'RequestController@approveRequest');
 
 Route::get('/email/disapproved/{id}', 'RequestController@disapproveRequest');
 
+
+//Routes for the categories
 Route::get('/category', 'CategoriesController@category');
+
 Route::post('/addCategory', 'CategoriesController@addCategory');
+
 Route::get('/category/{id}', 'PostController@category');

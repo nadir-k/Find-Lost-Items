@@ -9,7 +9,7 @@
 </div>
 
 <!-- stores the credentials into requests table -->
-<form method="POST" action="{{route('requests.store')}}">
+<form method="POST" action="{{url('/storeRequest')}}">
     @csrf
     <div class="form-group">
         <label for="reason">Reason of the request</label>

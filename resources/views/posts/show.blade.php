@@ -37,12 +37,12 @@
     @if(!Auth::guest())
         @if(Auth::user()->id == $posts->user_id)
         <div>
-            <a href="/posts/{{$posts->id}}/edit" class="btn btn-primary">Edit</a>
-            {!!Form::open(['action' => ['PostController@destroy', $posts->id], 'method' => 'POST', 'class' => 'text-right float-right'])!!}
-                {{Form::hidden('_method', 'DELETE')}}
-                {{Form::submit('Delete', ['class' => 'btn btn-danger pull-right'])}}
-            {!!Form::close() !!}
-        </div>
+            <a href='{{url("edit/{$posts->id}")}}' class="btn btn-primary">Edit</a>
+                {!!Form::open(['action' => ['PostController@destroy', $posts->id], 'method' => 'POST', 'class' => 'text-right float-right'])!!}
+                    {{Form::hidden('_method', 'DELETE')}}
+                    {{Form::submit('Delete', ['class' => 'btn btn-danger pull-right'])}}
+                {!!Form::close() !!}
+            </div>
         @endif
         <!-- allows the admin to edit the post -->
         @if(Auth::user()->role == 1)

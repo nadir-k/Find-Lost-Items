@@ -24,12 +24,12 @@
                     <img class="img-thumbnail" style="width:100% height:100%" src="/storage/cover_images/{{$post->cover_image}}" height="200" width="200">
                 </div>
                 <div class="col-md-5 col-sm-5">
-                    <h3><a href="/posts/{{$post->id}}">{{$post->title}}</a></h3>
+                    <h3><a href='{{url("show/{$post->id}")}}' >{{$post->title}}</a></h3>
                     <small>Written on: {{$post->created_at}}</small>
                     <br>
                     @if(!Auth::guest())
                         @if(Auth::user()->id != $post->user_id && Auth::user()->role != 1)
-                            <a href="{{action('RequestController@create', $post->id)}}" class="btn btn-primary">Request</a>
+                            <a href='{{url("makeRequest/{$post->id}")}}' class="btn btn-primary">Request</a>
                         @endif
                     @endif
                 </div>
