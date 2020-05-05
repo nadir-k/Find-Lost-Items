@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Gate;
 use App\LostItem;
 use App\Category;
+use URL;
 
 class PostController extends Controller
 {
@@ -63,19 +64,17 @@ class PostController extends Controller
 
         //Checks if there is an image
         if($request->hasFile('cover_image')){
-            // Gets the original file name with extension
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            // Gets just the original file name
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Gets the original file name
+            $theFile = $request->file('cover_image');
             // Gets just the extension
             $extension = $request->file('cover_image')->getClientOriginalExtension();
             // Gets the filename to store
-            $fileNameToStore= $filename.'_'.time().'.'.$extension;
-            // Gets the file to be uploaded
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            $theFile->move(public_path().'/cover_images', $theFile->getClientOriginalName());
+            // Gets the filename to store
+            $url = URL::to("/").'/cover_images'.'/'.$theFile->getClientOriginalName();
         } else {
             //This noimage will be the image to store
-            $fileNameToStore = 'noimage.jpg';
+			$url = 'noimage.jpg';
         }
 
         //Creates a LostItem and stores entries into database
@@ -86,7 +85,7 @@ class PostController extends Controller
         $posts->found_location = $request->input('found_location');
         $posts->type_id = $request->input('type_id');
         $posts->user_id = auth()->user()->id;
-        $posts->cover_image = $fileNameToStore;
+        $posts->cover_image = $url;
         //saves the post in the database
 
         $posts->save();
@@ -145,11 +144,14 @@ class PostController extends Controller
         ]);
 
         if($request->hasFile('cover_image')){
-            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+			// Gets the original file name
+            $theFile = $request->file('cover_image');
+            // Gets just the extension
             $extension = $request->file('cover_image')->getClientOriginalExtension();
-            $fileNameToStore= $filename.'_'.time().'.'.$extension;
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+            // Gets the filename to store
+            $theFile->move(public_path().'/cover_images', $theFile->getClientOriginalName());
+            // Gets the filename to store
+            $url = URL::to("/").'/cover_images'.'/'.$theFile->getClientOriginalName();
         }
 
         $posts = LostItem::find($id);
@@ -159,7 +161,7 @@ class PostController extends Controller
         $posts->colour = $request->input('colour');
         $posts->found_location = $request->input('found_location');
         if($request->hasFile('cover_image')){
-            $posts->cover_image = $fileNameToStore;
+            $posts->cover_image = $url;
         }
         $posts->save();
 

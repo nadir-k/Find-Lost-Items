@@ -21,7 +21,7 @@
         <div class="shadow-lg p-3 mb-4 bg-white rounded">
             <div class="row">
                 <div class="col-md-3 col-sm-3">
-                    <img class="img-thumbnail" style="width:100% height:100%" src="/storage/cover_images/{{$post->cover_image}}" height="200" width="200">
+                    <img class="img-thumbnail" style="width:100% height:100%" src="{{$post->cover_image}}" height="200" width="200">
                 </div>
                 <div class="col-md-5 col-sm-5">
                     <h3><a href='{{url("show/{$post->id}")}}' >{{$post->title}}</a></h3>

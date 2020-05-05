@@ -6,7 +6,7 @@
     <div class="p-3 mb-4 bg-white rounded">
         <div class="row">
             <div class="col-md-4 col-sm-3">
-                <img class="img-thumbnail" style="width:100% height:100%" src="/storage/cover_images/{{$posts->cover_image}}" height="300" width="300">
+                <img class="img-thumbnail" style="width:100% height:100%" src="{{$posts->cover_image}}" height="300" width="300">
             </div>
             <br><br>
             <div class="col-md-5 col-sm-5">
